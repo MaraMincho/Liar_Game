@@ -2,10 +2,11 @@ package org.maramincho.liar_game.user.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
 /*유저 전적*/
 @Entity
-@Table(name = "user_record")
+@Table(name = "basic_user_record")
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
@@ -21,19 +22,20 @@ public final class BasicUserRecordEntity {
     private BasicUserEntity user;
 
     /* 승리 횟수 */
-    @Column(name = "win_count", nullable = false)
+
+    @Column(name = "win_count", nullable = false, columnDefinition = "BIGINT DEFAULT 0")
+    @Builder.Default
     private Long winCount = 0L;
 
     /* 패배 횟수 */
-    @Column(name = "defeat_count", nullable = false)
+    @Column(name = "defeat_count", nullable = false, columnDefinition = "BIGINT DEFAULT 0")
+    @Builder.Default
     private Long defeatCount = 0L;
 
     //MARK: - Method
-    public void winGame() {
-        winCount += 1;
-    }
+    public void winGame() { winCount += 1; }
 
     public void loseGame() {
-        winCount -= 1;
+        winCount += 1;
     }
 }

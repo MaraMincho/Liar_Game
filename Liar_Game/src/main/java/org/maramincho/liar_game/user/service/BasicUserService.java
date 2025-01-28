@@ -1,8 +1,11 @@
 package org.maramincho.liar_game.user.service;
 
 import lombok.RequiredArgsConstructor;
-import org.maramincho.liar_game.user.domain.DefaultUser;
+import org.maramincho.liar_game.user.domain.BasicUser;
 import org.maramincho.liar_game.user.dto.CreateUser;
+import org.maramincho.liar_game.user.entity.BasicUserEntity;
+import org.maramincho.liar_game.user.entity.BasicUserRecordEntity;
+import org.maramincho.liar_game.user.repository.BasicUserRecordRepository;
 import org.maramincho.liar_game.user.repository.BasicUserRepository;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +13,17 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class BasicUserService {
     private final BasicUserRepository basicUserRepository;
+    private final BasicUserRecordRepository basicUserRecordRepository;
 
     public CreateUser.response createUser(CreateUser.request request) {
-        final var defaultUser = new DefaultUser(request);
-        final var defaultUserEntity = defaultUser.toEntity();
+        final var defaultUser = new BasicUser(request);
+        final var entityTuple = defaultUser.toEntity();
+        final BasicUserEntity basicUserEntity = entityTuple.x;
+        final BasicUserRecordEntity recordEntity = entityTuple.y;
 
-        basicUserRepository.save(defaultUserEntity);
+        basicUserRepository.save(basicUserEntity);
+        basicUserRecordRepository.save(recordEntity);
 
-        return new CreateUser.response(defaultUserEntity.getNickName(), defaultUserEntity.getId());
+        return new CreateUser.response(basicUserEntity.getNickName(), basicUserEntity.getId());
     }
 }
