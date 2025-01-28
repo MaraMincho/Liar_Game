@@ -18,6 +18,9 @@ public class GameRecord {
     @OneToMany(mappedBy = "gameRecord", cascade = CascadeType.ALL)
     private List<GameUser> users = new ArrayList<>();
 
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
+
     @Column(name = "started_at", nullable = false)
     private LocalDateTime startedAt;
 

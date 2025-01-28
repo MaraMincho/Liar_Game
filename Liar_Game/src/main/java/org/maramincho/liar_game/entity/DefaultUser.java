@@ -28,7 +28,7 @@ public class DefaultUser {
 
     /* 유저 전적 */
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private UserRecord userRecord;
+    private DefaultUserRecord userRecord;
 
     @Builder
     public DefaultUser(String nickName) {
