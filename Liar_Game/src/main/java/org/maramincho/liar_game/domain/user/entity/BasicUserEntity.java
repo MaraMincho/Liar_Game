@@ -4,11 +4,12 @@ package org.maramincho.liar_game.domain.user.entity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
+import org.maramincho.liar_game.domain.utils.entity.Timestamped;
 
 @Entity
 @Table(name = "basic_user")
 @RequiredArgsConstructor
-public final class BasicUserEntity {
+public final class BasicUserEntity extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)

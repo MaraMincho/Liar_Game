@@ -2,6 +2,7 @@ package org.maramincho.liar_game.domain.game.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import org.maramincho.liar_game.domain.utils.entity.Timestamped;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -9,7 +10,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "game_record")
-public final class GameRecordEntity {
+public final class GameRecordEntity extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
