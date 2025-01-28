@@ -1,14 +1,18 @@
 package org.maramincho.liar_game.user.domain;
 
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import jdk.jfr.Frequency;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import org.maramincho.liar_game.user.dto.CreateUser;
 import org.maramincho.liar_game.user.entity.BasicUserEntity;
 import org.maramincho.liar_game.user.entity.BasicUserRecordEntity;
+
+import java.util.UUID;
 
 @AllArgsConstructor
 @Getter
 public class DefaultUser {
-    private Long id;
     private String nickName;
     private String email;
     private String password;
@@ -30,4 +34,17 @@ public class DefaultUser {
         return basicUser;
     }
 
+    public DefaultUser(CreateUser.request request) {
+        this.password = request.password();
+        this.email = request.email();
+        this.nickName = request.nickName();
+
+        if (this.nickName == null) {
+            setRandomNickName();
+        }
+    }
+
+    private void setRandomNickName() {
+        this.nickName = UUID.randomUUID().toString();
+    }
 }

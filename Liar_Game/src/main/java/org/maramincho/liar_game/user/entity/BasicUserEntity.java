@@ -10,6 +10,7 @@ import org.maramincho.liar_game.utils.entity.Timestamped;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Builder
+@Getter
 public final class BasicUserEntity extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
