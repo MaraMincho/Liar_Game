@@ -1,7 +1,10 @@
 package org.maramincho.liar_game.game.entity;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import org.maramincho.liar_game.utils.entity.Timestamped;
 
 import java.time.LocalDateTime;
@@ -10,6 +13,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "game_record")
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public final class GameRecordEntity extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,7 +34,4 @@ public final class GameRecordEntity extends Timestamped {
 
     @Column(name = "ended_at", nullable = false)
     private LocalDateTime endedAt;
-
-    @Builder
-    public GameRecordEntity(){}
 }

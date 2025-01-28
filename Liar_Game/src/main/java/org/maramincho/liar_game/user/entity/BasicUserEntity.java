@@ -2,13 +2,14 @@ package org.maramincho.liar_game.user.entity;
 
 
 import jakarta.persistence.*;
-import lombok.Builder;
-import lombok.RequiredArgsConstructor;
+import lombok.*;
 import org.maramincho.liar_game.utils.entity.Timestamped;
 
 @Entity
 @Table(name = "basic_user")
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
+@Builder
 public final class BasicUserEntity extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,11 +29,7 @@ public final class BasicUserEntity extends Timestamped {
     private String password;
 
     /* 유저 전적 */
+    @Setter
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private BasicUserRecordEntity userRecord;
-
-    @Builder
-    public BasicUserEntity(String nickName) {
-        this.nickName = nickName;
-    }
 }
