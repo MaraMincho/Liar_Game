@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.maramincho.liar_game.user.domain.BasicUser;
 import org.maramincho.liar_game.user.dto.CreateUser;
 import org.maramincho.liar_game.user.entity.BasicUserEntity;
-import org.maramincho.liar_game.user.entity.BasicUserRecordEntity;
 import org.maramincho.liar_game.user.repository.BasicUserRecordRepository;
 import org.maramincho.liar_game.user.repository.BasicUserRepository;
 import org.springframework.stereotype.Service;
@@ -15,15 +14,15 @@ public class BasicUserService {
     private final BasicUserRepository basicUserRepository;
     private final BasicUserRecordRepository basicUserRecordRepository;
 
-    public CreateUser.response createUser(CreateUser.request request) {
+    public CreateUser.Response createUser(CreateUser.Request request) {
         final var defaultUser = new BasicUser(request);
-        final var basicUserEntity = defaultUser
+        final BasicUserEntity basicUserEntity = defaultUser
                 .toEntity((basicUser, basicUserRecord) -> {
                     basicUserRepository.save(basicUser);
                     basicUserRecordRepository.save(basicUserRecord);
                     return basicUser;
                 });
 
-        return new CreateUser.response(basicUserEntity.getNickName(), basicUserEntity.getId());
+        return new CreateUser.Response(basicUserEntity.getNickName(), basicUserEntity.getId());
     }
 }
