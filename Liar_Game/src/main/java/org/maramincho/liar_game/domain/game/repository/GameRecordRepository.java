@@ -1,5 +1,6 @@
-package org.maramincho.liar_game.domain.game;
+package org.maramincho.liar_game.domain.game.repository;
 
+import org.maramincho.liar_game.domain.game.entity.GameRecordEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface GameRecordRepository extends JpaRepository<GameRecordEntity, Long> {

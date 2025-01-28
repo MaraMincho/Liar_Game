@@ -1,7 +1,7 @@
-package org.maramincho.liar_game.domain.game;
+package org.maramincho.liar_game.domain.game.entity;
 
 import jakarta.persistence.*;
-import org.maramincho.liar_game.domain.user.BasicUserEntity;
+import org.maramincho.liar_game.domain.user.entity.BasicUserEntity;
 
 @Entity
 @Table(name = "game_user")
