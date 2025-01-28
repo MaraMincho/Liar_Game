@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "default_user")
 @RequiredArgsConstructor
-public class DefaultUser {
+public final class DefaultUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)

@@ -4,11 +4,11 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "game_user")
-public class GameUser {
+public final class GameUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
-    Long id;
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "game_record_id", nullable = false)

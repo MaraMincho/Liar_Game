@@ -9,13 +9,14 @@ import java.util.List;
 
 @Entity
 @Table(name = "game_record")
-public class GameRecord {
+public final class GameRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
     Long id;
 
     @OneToMany(mappedBy = "gameRecord", cascade = CascadeType.ALL)
+    @Column(name = "users", nullable = false)
     private List<GameUser> users = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false)
