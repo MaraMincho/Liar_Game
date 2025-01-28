@@ -1,4 +1,4 @@
-package org.maramincho.liar_game.entity;
+package org.maramincho.liar_game.domain.user;
 
 
 import jakarta.persistence.*;
@@ -6,9 +6,9 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @Entity
-@Table(name = "default_user")
+@Table(name = "basic_user")
 @RequiredArgsConstructor
-public final class DefaultUserEntity {
+public final class BasicUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
@@ -28,10 +28,10 @@ public final class DefaultUserEntity {
 
     /* 유저 전적 */
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private DefaultUserRecordEntity userRecord;
+    private BasicUserRecordEntity userRecord;
 
     @Builder
-    public DefaultUserEntity(String nickName) {
+    public BasicUserEntity(String nickName) {
         this.nickName = nickName;
     }
 }
