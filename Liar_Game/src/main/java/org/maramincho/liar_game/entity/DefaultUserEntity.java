@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @Entity
 @Table(name = "default_user")
 @RequiredArgsConstructor
-public final class DefaultUser {
+public final class DefaultUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
@@ -28,10 +28,10 @@ public final class DefaultUser {
 
     /* 유저 전적 */
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
-    private DefaultUserRecord userRecord;
+    private DefaultUserRecordEntity userRecord;
 
     @Builder
-    public DefaultUser(String nickName) {
+    public DefaultUserEntity(String nickName) {
         this.nickName = nickName;
     }
 }

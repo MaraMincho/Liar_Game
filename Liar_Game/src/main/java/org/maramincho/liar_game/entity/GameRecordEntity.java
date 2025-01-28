@@ -9,7 +9,7 @@ import java.util.List;
 
 @Entity
 @Table(name = "game_record")
-public final class GameRecord {
+public final class GameRecordEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
@@ -17,7 +17,7 @@ public final class GameRecord {
 
     @OneToMany(mappedBy = "gameRecord", cascade = CascadeType.ALL)
     @Column(name = "users", nullable = false)
-    private List<GameUser> users = new ArrayList<>();
+    private List<GameUserEntity> users = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
@@ -29,5 +29,5 @@ public final class GameRecord {
     private LocalDateTime endedAt;
 
     @Builder
-    public GameRecord(){}
+    public GameRecordEntity(){}
 }

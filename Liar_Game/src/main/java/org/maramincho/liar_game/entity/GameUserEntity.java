@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "game_user")
-public final class GameUser {
+public final class GameUserEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
@@ -12,11 +12,11 @@ public final class GameUser {
 
     @ManyToOne
     @JoinColumn(name = "game_record_id", nullable = false)
-    private GameRecord gameRecord;
+    private GameRecordEntity gameRecord;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private DefaultUser user;
+    private DefaultUserEntity user;
 
     @Column(name = "role", nullable = false)
     private String role;
