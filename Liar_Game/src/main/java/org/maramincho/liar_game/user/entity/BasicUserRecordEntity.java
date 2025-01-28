@@ -2,7 +2,6 @@ package org.maramincho.liar_game.user.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.ColumnDefault;
 
 /*유저 전적*/
 @Entity
@@ -22,7 +21,6 @@ public final class BasicUserRecordEntity {
     private BasicUserEntity user;
 
     /* 승리 횟수 */
-
     @Column(name = "win_count", nullable = false, columnDefinition = "BIGINT DEFAULT 0")
     @Builder.Default
     private Long winCount = 0L;
