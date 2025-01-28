@@ -5,10 +5,8 @@ import lombok.Getter;
 import org.maramincho.liar_game.user.dto.CreateUser;
 import org.maramincho.liar_game.user.entity.BasicUserEntity;
 import org.maramincho.liar_game.user.entity.BasicUserRecordEntity;
-import org.maramincho.liar_game.utils.common.Tuple;
 
 import java.util.UUID;
-import java.util.function.Function;
 
 @AllArgsConstructor
 @Getter
@@ -41,7 +39,7 @@ public class BasicUser {
         return handler.execute(basicUser, recordEntity);
     }
 
-    public BasicUser(CreateUser.request request) {
+    public BasicUser(CreateUser.Request request) {
         this.password = request.password();
         this.email = request.email();
         this.nickName = request.nickName();

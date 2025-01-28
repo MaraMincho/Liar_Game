@@ -4,14 +4,13 @@ import io.micrometer.common.lang.Nullable;
 
 public final class CreateUser {
 
-    public record request(
-            @Nullable String email,
-            @Nullable String password,
-            @Nullable String nickName) {
-
+    public record Request(
+            String email,
+            String password,
+            String nickName) {
     }
 
-    public record response(String nickName, Long id) {
+    public record Response(String nickName, Long id) {
 
     }
 }
