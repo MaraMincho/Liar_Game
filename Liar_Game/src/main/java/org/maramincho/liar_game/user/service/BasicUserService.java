@@ -17,12 +17,12 @@ public class BasicUserService {
 
     public CreateUser.response createUser(CreateUser.request request) {
         final var defaultUser = new BasicUser(request);
-        final var entityTuple = defaultUser.toEntity();
-        final BasicUserEntity basicUserEntity = entityTuple.x;
-        final BasicUserRecordEntity recordEntity = entityTuple.y;
-
-        basicUserRepository.save(basicUserEntity);
-        basicUserRecordRepository.save(recordEntity);
+        final var basicUserEntity = defaultUser
+                .toEntity((basicUser, basicUserRecord) -> {
+                    basicUserRepository.save(basicUser);
+                    basicUserRecordRepository.save(basicUserRecord);
+                    return basicUser;
+                });
 
         return new CreateUser.response(basicUserEntity.getNickName(), basicUserEntity.getId());
     }

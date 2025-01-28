@@ -8,6 +8,7 @@ import org.maramincho.liar_game.user.entity.BasicUserRecordEntity;
 import org.maramincho.liar_game.utils.common.Tuple;
 
 import java.util.UUID;
+import java.util.function.Function;
 
 @AllArgsConstructor
 @Getter
@@ -16,7 +17,14 @@ public class BasicUser {
     private String email;
     private String password;
 
-    public Tuple<BasicUserEntity, BasicUserRecordEntity> toEntity() {
+    @FunctionalInterface
+    public interface BasicUserEntityResultHandler<T> {
+        T execute(BasicUserEntity basicUser, BasicUserRecordEntity basicUserRecord);
+    }
+
+    public <T> T toEntity(
+            BasicUserEntityResultHandler<T> handler
+    ) {
         BasicUserEntity basicUser = BasicUserEntity.builder()
                 .nickName(nickName)
                 .email(email)
@@ -30,7 +38,7 @@ public class BasicUser {
         basicUser.setUserRecord(recordEntity);
         recordEntity.setUser(basicUser);
 
-        return new Tuple<>(basicUser, recordEntity);
+        return handler.execute(basicUser, recordEntity);
     }
 
     public BasicUser(CreateUser.request request) {
