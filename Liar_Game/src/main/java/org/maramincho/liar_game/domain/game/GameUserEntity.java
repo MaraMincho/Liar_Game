@@ -1,6 +1,7 @@
-package org.maramincho.liar_game.entity;
+package org.maramincho.liar_game.domain.game;
 
 import jakarta.persistence.*;
+import org.maramincho.liar_game.domain.user.BasicUserEntity;
 
 @Entity
 @Table(name = "game_user")
@@ -16,7 +17,7 @@ public final class GameUserEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private DefaultUserEntity user;
+    private BasicUserEntity user;
 
     @Column(name = "role", nullable = false)
     private String role;
