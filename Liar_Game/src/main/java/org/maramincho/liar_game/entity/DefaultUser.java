@@ -6,9 +6,9 @@ import lombok.Builder;
 import lombok.RequiredArgsConstructor;
 
 @Entity
-@Table(name = "users")
+@Table(name = "default_user")
 @RequiredArgsConstructor
-public class User {
+public class DefaultUser {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
@@ -31,7 +31,7 @@ public class User {
     private UserRecord userRecord;
 
     @Builder
-    public User(String nickName) {
+    public DefaultUser(String nickName) {
         this.nickName = nickName;
     }
 }

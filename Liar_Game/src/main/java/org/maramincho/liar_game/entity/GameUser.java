@@ -16,7 +16,7 @@ public class GameUser {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private DefaultUser user;
 
     @Column(name = "role", nullable = false)
     private String role;
