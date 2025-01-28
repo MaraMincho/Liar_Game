@@ -14,7 +14,7 @@ public class UserRecord {
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User user;
+    private DefaultUser user;
 
     /* 승리 횟수 */
     @Column(name = "win_count", nullable = false)
