@@ -3,13 +3,12 @@ package org.maramincho.liar_game.entity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 
 /*유저 전적*/
 @Entity
 @Table(name = "user_record")
 @NoArgsConstructor
-public final class DefaultUserRecord {
+public final class DefaultUserRecordEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
@@ -17,7 +16,7 @@ public final class DefaultUserRecord {
 
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private DefaultUser user;
+    private DefaultUserEntity user;
 
     /* 승리 횟수 */
     @Column(name = "win_count", nullable = false)
@@ -28,7 +27,7 @@ public final class DefaultUserRecord {
     private Long defeatCount = 0L;
 
     @Builder
-    public DefaultUserRecord(DefaultUser user) {
+    public DefaultUserRecordEntity(DefaultUserEntity user) {
         this.user = user;
     }
 
