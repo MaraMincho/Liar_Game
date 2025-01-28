@@ -6,7 +6,7 @@ import lombok.Builder;
 /*유저 전적*/
 @Entity
 @Table(name = "user_record")
-public class UserRecord {
+public class DefaultUserRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
@@ -25,7 +25,7 @@ public class UserRecord {
     private Long defeatCount = 0L;
 
     @Builder
-    public UserRecord() {
+    public DefaultUserRecord() {
 
     }
 }
