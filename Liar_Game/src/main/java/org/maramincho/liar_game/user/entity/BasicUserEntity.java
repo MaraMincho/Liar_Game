@@ -1,10 +1,10 @@
-package org.maramincho.liar_game.domain.user.entity;
+package org.maramincho.liar_game.user.entity;
 
 
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;
-import org.maramincho.liar_game.domain.utils.entity.Timestamped;
+import org.maramincho.liar_game.utils.entity.Timestamped;
 
 @Entity
 @Table(name = "basic_user")

@@ -1,8 +1,8 @@
-package org.maramincho.liar_game.domain.game.entity;
+package org.maramincho.liar_game.game.entity;
 
 import jakarta.persistence.*;
 import lombok.Builder;
-import org.maramincho.liar_game.domain.utils.entity.Timestamped;
+import org.maramincho.liar_game.utils.entity.Timestamped;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package org.maramincho.liar_game.domain.utils.entity;
+package org.maramincho.liar_game.utils.entity;
 
 import jakarta.persistence.*;
 import lombok.Getter;
