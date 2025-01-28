@@ -19,24 +19,10 @@ public class UserController {
     private final BasicUserService basicUserService;
 
     //TODO: Error 처리 로직에 대해서 생각하기
-
     @PostMapping
     public ResponseEntity<CreateUser.response> post(@RequestBody CreateUser.request request) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(basicUserService.createUser(request));
-    }
-
-    @GetMapping()
-    public ResponseEntity<String> get() {
-        var cur = new CreateUser.request(null, null, null);
-        var mapper = new ObjectMapper();
-        try {
-            String curJson = mapper.writeValueAsString(cur);
-            System.out.println(curJson);
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
-        }
-        return ResponseEntity.ok("");
     }
 
 }
