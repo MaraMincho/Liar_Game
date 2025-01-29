@@ -34,11 +34,11 @@ jobs:
     - name: Change Directory
       run: cd Liar_Game
 
-    - name: Echo current directory
-      run: pwd
+    - name: Echo current directory and files
+      run: pwd; ls -al
 
-    - name: Grant execute permission for Gradle
-      run: chmod +x gradlew
+    # - name: Grant execute permission for Gradle
+    #   run: chmod +x gradlew
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
