@@ -61,9 +61,10 @@ jobs:
         cd Liar_Game
         pwd
         ls -la
-        cat build.gradle
-        cat settings.gradle
-        ./gradlew --version
+    - name: initialize Gradle
+      run: gradle init
+      working-directory: Liar_Game
+
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
       with:
