@@ -2,8 +2,6 @@ package org.maramincho.liar_game.user.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
-import com.jayway.jsonpath.JsonPath;
-import jdk.jfr.ContentType;
 import org.junit.jupiter.api.*;
 import org.maramincho.liar_game.user.dto.CreateUser;
 import org.maramincho.liar_game.user.repository.BasicUserRecordRepository;
