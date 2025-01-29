@@ -33,15 +33,12 @@ jobs:
 
     - name: Grant execute permission for Gradle
       run: chmod +x gradlew
-      working-directory: Liar_game  # <-- Gradle 실행 위치 설정
 
     - name: Build with Gradle Wrapper
       run: ./gradlew build
-      working-directory: Liar_game  # <-- Gradle 실행 위치 설정
       
     - name: Run Tests
       run: ./gradlew test
-      working-directory: Liar_game  # <-- Gradle 실행 위치 설정
 
   dependency-submission:
     runs-on: ubuntu-latest
