@@ -1,6 +1,7 @@
 package org.maramincho.liar_game.user.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import com.jayway.jsonpath.JsonPath;
 import jdk.jfr.ContentType;
 import org.junit.jupiter.api.*;
@@ -64,9 +65,10 @@ class BasicUserServiceTest {
 
         // Assert
         String responseString = mvcResult.getResponse().getContentAsString();
+        CreateUser.Response response = new Gson().fromJson(responseString, CreateUser.Response.class);
 
-//        final var targetUserEntity = basicUserRepository.getReferenceById(response.id());
+        final var targetUserEntity = basicUserRepository.getReferenceById(response.id());
 
-//        assertThat(targetUserEntity.getNickName()).isEqualTo(response.nickName());
+        assertThat(targetUserEntity.getNickName()).isEqualTo(response.nickName());
     }
 }
