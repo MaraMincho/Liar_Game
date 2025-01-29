@@ -59,7 +59,7 @@ jobs:
         distribution: 'temurin'
 
     - name: Gradle initialize
-      run: gradle init ./Liar_Game/Liar_Game
+      run: cd Liar_Game && ls -al && cd Liar_Game && gradle init
 
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
