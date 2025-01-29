@@ -1,6 +1,7 @@
 package org.maramincho.liar_game.user.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.maramincho.liar_game.user.dto.UpdateUser;
 import org.maramincho.liar_game.user.dto.CreateUser;
 import org.maramincho.liar_game.user.service.BasicUserService;
 import org.springframework.http.HttpStatus;
@@ -15,9 +16,15 @@ public class UserController {
 
     //TODO: Error 처리 로직에 대해서 생각하기
     @PostMapping
-    public ResponseEntity<CreateUser.Response> post(@RequestBody CreateUser.Request request) {
+    public ResponseEntity<CreateUser.Response> createBasicUser(@RequestBody CreateUser.Request request) {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(basicUserService.createUser(request));
+    }
+
+    @PatchMapping
+    public ResponseEntity<UpdateUser.Response> updateBasicUser(@RequestBody UpdateUser.Request request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(basicUserService.updateUser(request));
     }
 
 }

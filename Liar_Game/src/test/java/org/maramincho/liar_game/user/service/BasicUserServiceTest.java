@@ -3,7 +3,10 @@ package org.maramincho.liar_game.user.service;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.jupiter.api.*;
+import org.maramincho.liar_game.user.domain.BasicUser;
 import org.maramincho.liar_game.user.dto.CreateUser;
+import org.maramincho.liar_game.user.dto.UpdateUser;
+import org.maramincho.liar_game.user.entity.BasicUserEntity;
 import org.maramincho.liar_game.user.repository.BasicUserRecordRepository;
 import org.maramincho.liar_game.user.repository.BasicUserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +46,12 @@ class BasicUserServiceTest {
                 .build();
     }
 
+    @BeforeEach
+    public void removeDatabase() {
+        basicUserRepository.deleteAll();
+        basicUserRecordRepository.deleteAll();
+    }
+
     @Test
     @DisplayName("api/v1/user, POST, User추가에 성공합니다.")
     void createUserWithEmptyEmailAndEmptyPassword() throws Exception {
@@ -66,7 +75,41 @@ class BasicUserServiceTest {
         CreateUser.Response response = new Gson().fromJson(responseString, CreateUser.Response.class);
 
         final var targetUserEntity = basicUserRepository.getReferenceById(response.id());
-
         assertThat(targetUserEntity.getNickName()).isEqualTo(response.nickName());
+    }
+
+    @Test
+    @DisplayName("api/v1/user, patch, User NickName 변경에 성공합니다.")
+    void updateUserWithEmptyEmailAndEmptyPassword() throws Exception {
+        // Assign
+        final String url = "/api/v1/user";
+        final String updateNickName = "update nickName";
+
+        final CreateUser.Request newUserRequest = new CreateUser.Request(null, null, null);
+        BasicUser newUser = new BasicUser(newUserRequest);
+        BasicUserEntity newUserEntity = newUser.toEntity((basicUser, basicUserRecord) -> {
+            basicUserRepository.save(basicUser);
+            basicUserRecordRepository.save(basicUserRecord);
+            return basicUser;
+        });
+
+        final UpdateUser.Request updateRequest = new UpdateUser.Request(
+                newUserEntity.getId(),
+                updateNickName,
+                null,
+                null
+        );
+        final String requestBody = objectMapper.writeValueAsString(updateRequest);
+
+        // Act
+        ResultActions mvcActions = mockMvc.perform(MockMvcRequestBuilders.patch(url)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(requestBody)
+        );
+        mvcActions.andExpect(MockMvcResultMatchers.status().isCreated());
+        final var updateUserEntity = basicUserRepository.getReferenceById(newUserEntity.getId());
+
+        // Assert
+        assertThat(updateUserEntity.getNickName()).isEqualTo(updateNickName);
     }
 }
