@@ -58,8 +58,8 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
 
-    - name: Gradle initialize
-      run: cd Liar_Game && ls -al && gradle init
+    - name: Change directory
+      run: cd Liar_Game && ls -al 
 
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
