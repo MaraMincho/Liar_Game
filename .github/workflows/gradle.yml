@@ -58,6 +58,7 @@ jobs:
         distribution: 'temurin'
     - name: Debug information
       run: |
+        cd Liar_Game
         pwd
         ls -la
         cat build.gradle
