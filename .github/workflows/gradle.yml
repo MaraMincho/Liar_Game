@@ -61,4 +61,6 @@ jobs:
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
       with:
-        gradle-version: '8.11'  # 사용하려는 Gradle 버전 지정
+        build-script-name: 'build.gradle'
+        gradle-version: '8.11'  # Gradle 버전 지정
+        build-root-directory: '.' 
