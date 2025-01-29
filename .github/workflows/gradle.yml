@@ -56,10 +56,14 @@ jobs:
       with:
         java-version: '21'
         distribution: 'temurin'
-    - name: List directory contents
-      run: pwd; ls -al Liar_Game  # 디버깅을 위한 디렉토리 내용 출력
+    - name: Debug information
+      run: |
+        pwd
+        ls -la
+        cat build.gradle
+        cat settings.gradle
+        ./gradlew --version
     - name: Generate and submit dependency graph
       uses: gradle/actions/dependency-submission@v4
       with:
-        working-directory: 'Liar_Game'  # Gradle 프로젝트가 있는 디렉토리
         gradle-version: '8.11'
