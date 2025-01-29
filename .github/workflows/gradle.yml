@@ -32,7 +32,7 @@ jobs:
       uses: gradle/actions/setup-gradle@v4  # 최신 버전 사용 
 
     - name: Change Directory
-      run: cd Liar_Game/LiarGame; pwd
+      run: cd Liar_Game/Liar_Game; pwd
 
     - name: Echo current directory and files
       run: pwd; ls -al
