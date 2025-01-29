@@ -31,6 +31,9 @@ jobs:
     - name: Setup Gradle
       uses: gradle/actions/setup-gradle@v4  # 최신 버전 사용
 
+    - name: Change Directory
+      run: cd Liar_Game
+
     - name: Grant execute permission for Gradle
       run: chmod +x gradlew
 
