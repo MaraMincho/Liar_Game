@@ -32,16 +32,18 @@ jobs:
       uses: gradle/actions/setup-gradle@v4  # 최신 버전 사용 
 
     - name: Change Directory
-      run: cd Liar_Game/Liar_Game; pwd
+      run: cd Liar_Game
 
     - name: Echo current directory and files
       run: pwd; ls -al
-      
+
     - name: Build with Gradle Wrapper
       run: ./gradlew build
+      working-directory: Liar_Game
       
     - name: Run Tests
       run: ./gradlew test
+      working-directory: Liar_Game
 
   dependency-submission:
     runs-on: ubuntu-latest
