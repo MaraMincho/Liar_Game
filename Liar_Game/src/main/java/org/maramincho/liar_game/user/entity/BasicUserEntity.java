@@ -2,7 +2,9 @@ package org.maramincho.liar_game.user.entity;
 
 
 import jakarta.persistence.*;
+import jakarta.transaction.Transactional;
 import lombok.*;
+import org.maramincho.liar_game.user.dto.UpdateUser;
 import org.maramincho.liar_game.utils.entity.Timestamped;
 
 @Entity
@@ -15,6 +17,7 @@ public final class BasicUserEntity extends Timestamped {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", unique = true, nullable = false)
+    @Setter(AccessLevel.NONE)
     private Long id;
 
     /* 닉네임 */
@@ -33,4 +36,20 @@ public final class BasicUserEntity extends Timestamped {
     @Setter
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private BasicUserRecordEntity userRecord;
+
+    // UpdateUser Request
+    public void updateUserRequest(UpdateUser.Request request) {
+        if (!request.id().equals(this.id)) {
+            return;
+        }
+        if (request.email() != null) {
+            this.email = request.email();
+        }
+        if (request.password() != null) {
+            this.password = request.password();
+        }
+        if (request.nickName() != null) {
+            this.nickName = request.nickName();
+        }
+    }
 }

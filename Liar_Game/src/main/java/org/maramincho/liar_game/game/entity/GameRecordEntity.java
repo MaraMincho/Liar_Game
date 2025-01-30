@@ -24,6 +24,7 @@ public final class GameRecordEntity extends Timestamped {
 
     @OneToMany(mappedBy = "gameRecord", cascade = CascadeType.ALL)
     @Column(name = "users", nullable = false)
+    @Builder.Default
     private List<GameUserEntity> users = new ArrayList<>();
 
     @Column(name = "created_at", nullable = false)
