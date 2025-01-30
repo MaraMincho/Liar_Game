@@ -26,5 +26,4 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(basicUserService.updateUser(request));
     }
-
 }
