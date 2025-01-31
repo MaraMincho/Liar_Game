@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @RequiredArgsConstructor
 @Getter
 public class BasicChat {
-    @NonNull private final Long id;
+    @NonNull private final Long senderId;
     @NonNull private final String content;
     @NonNull private final LocalDateTime dateTime;
     @NonNull private final String nickName;

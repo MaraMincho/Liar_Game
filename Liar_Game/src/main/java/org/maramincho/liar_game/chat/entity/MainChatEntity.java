@@ -21,8 +21,8 @@ public class MainChatEntity extends Timestamped {
     @Column(name = "content", length = 1024, nullable = false)
     private String content;
 
-    @Column(name = "user_id", nullable = false)
-    private Long userId;
+    @Column(name = "sender_id", nullable = false)
+    private Long senderId;
 
     @Column(name = "nick_name", length = 15, nullable = false)
     private String nickName;
@@ -30,7 +30,7 @@ public class MainChatEntity extends Timestamped {
     public static MainChatEntity NormalChatEntityByBasicChat(BasicChat chat) {
         return MainChatEntity.builder()
                 .content(chat.getContent())
-                .userId(chat.getId())
+                .senderId(chat.getSenderId())
                 .nickName(chat.getNickName())
                 .build();
     }
